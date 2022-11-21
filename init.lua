@@ -1,4 +1,5 @@
 require("options")
 require("plugins")
 require("config/nvim-tree")
+require("config/lualine")
 require("config/notify")

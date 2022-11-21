@@ -42,6 +42,7 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope.nvim")
 	use("rcarriga/nvim-notify")
 	use("kyazdani42/nvim-web-devicons")
+	use("nvim-lualine/lualine.nvim")
 	use("nvim-tree/nvim-tree.lua")
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
