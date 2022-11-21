@@ -40,6 +40,8 @@ return packer.startup(function(use)
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("rcarriga/nvim-notify")
+	use("kyazdani42/nvim-web-devicons")
+	use("nvim-tree/nvim-tree.lua")
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end
