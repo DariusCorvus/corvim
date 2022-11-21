@@ -44,6 +44,9 @@ return packer.startup(function(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("nvim-lualine/lualine.nvim")
 	use("nvim-tree/nvim-tree.lua")
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
+	use("neovim/nvim-lspconfig")
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end
