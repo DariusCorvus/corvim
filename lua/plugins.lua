@@ -61,6 +61,7 @@ return packer.startup(function(use)
 	use("nvim-treesitter/nvim-treesitter-context")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("terrortylor/nvim-comment")
+	use("sainnhe/gruvbox-material")
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end
