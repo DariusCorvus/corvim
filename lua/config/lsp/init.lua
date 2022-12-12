@@ -22,7 +22,7 @@ local function lsp_keymaps(bufnr)
 		{ "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>" },
 		{ "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>" },
 		{ "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>" },
-		{ "n", "gi", "<cmd>lua vim.lsp.buf.implementation()" },
+		{ "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
 		{ "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
 		{ "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
 		{ "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>" },
