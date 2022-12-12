@@ -14,6 +14,8 @@ keymap("n", "<leader>q", ":q<CR>", opts)
 keymap("n", "<leader>qa", ":qa<CR>", opts)
 keymap("n", "<leader>qq", ":q!<CR>", opts)
 keymap("n", "<leader>qqa", ":qa!<CR>", opts)
+keymap("n", "<leader>v", ":vsplit<CR>", opts)
+keymap("n", "<leader>h", ":split<CR>", opts)
 
 local ok, telescope = pcall(require, "telescope")
 if ok then
