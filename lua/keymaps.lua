@@ -8,6 +8,15 @@ g.maplocalleader = " "
 
 keymap("n", "<leader>e", ":NvimTreeFocus<CR>", opts)
 keymap("n", "<leader>xe", ":NvimTreeClose<CR>", opts)
+local ok, telescope = pcall(require, "telescope")
+if ok then
+	local builtin = require("telescope.builtin")
+	keymap("n", "<leader>ff", "<cmd>:Telescope find_files<CR>", {})
+	keymap("n", "<leader>fg", "<cmd>:Telescope live_grep<CR>", {})
+	keymap("n", "<leader>fb", "<cmd>:Telescope buffers<CR>", {})
+	keymap("n", "<leader>fn", "<cmd>:Telescope help_tags<CR>", {})
+end
+
 local ok, toggleterm = pcall(require, "config/toggleterm")
 if ok then
 	toggleterm.add_terminal("pwsh", "pwsh -NoLogo")
@@ -16,3 +25,4 @@ if ok then
 	keymap("n", "<leader>t", "<cmd>lua Toggle_terminal('pwsh')<CR>", opts)
 	keymap("n", "<leader>tg", "<cmd>lua Toggle_terminal('lazygit')<CR>", opts)
 end
+
