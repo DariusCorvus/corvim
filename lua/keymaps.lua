@@ -31,9 +31,12 @@ end
 local ok, toggleterm = pcall(require, "config/toggleterm")
 if ok then
 	toggleterm.add_terminal("pwsh", "pwsh -NoLogo")
+	toggleterm.add_terminal("pwsh_buf_vert", "pwsh -NoLogo", "vertical")
+	toggleterm.add_terminal("pwsh_buf_hor", "pwsh -NoLogo", "horizontal")
 	toggleterm.add_terminal("lazygit", "lazygit")
 
-	keymap("n", "<leader>t", "<cmd>lua Toggle_terminal('pwsh')<CR>", opts)
+	keymap("n", "<leader>tf", "<cmd>lua Toggle_terminal('pwsh')<CR>", opts)
+	keymap("n", "<leader>tv", "<cmd>lua Toggle_terminal('pwsh_buf_vert')<CR>", opts)
+	keymap("n", "<leader>th", "<cmd>lua Toggle_terminal('pwsh_buf_hor')<CR>", opts)
 	keymap("n", "<leader>tg", "<cmd>lua Toggle_terminal('lazygit')<CR>", opts)
 end
-
