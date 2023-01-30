@@ -149,6 +149,20 @@ vim.o.completeopt = 'menuone,noselect'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.keymap.set('n', '<leader>w', ":w<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>ww', ":w!<CR>", { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>q', ":q<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>qq', ":q!<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>qa', ":qa<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>qqa', ":qa!<CR>", { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>v', ":vsplit<CR>",{ noremap = true, silent = true })
+vim.keymap.set('n', '<leader>h', ":split<CR>",{ noremap = true, silent = true })
+
+vim.keymap.set('i', 'jk', [[<C-\><C-n>]],{ noremap = true, silent = true })
+vim.keymap.set('v', 'jk', [[<C-\><C-n>]],{ noremap = true, silent = true })
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
