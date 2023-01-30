@@ -48,6 +48,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
+  use 'sainnhe/gruvbox-material'
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
@@ -123,7 +124,15 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
+vim.g.gruvbox_material_foreground = "original"
+vim.g.gruvbox_material_background = "hard"
+vim.g.gruvbox_material_disable_italic_comment = 1
+vim.g.gruvbox_material_better_performance = 1
+vim.g.gruvbox_material_enable_bold = 1
+vim.g.gruvbox_material_ui_contrast = 'high'
+vim.g.gruvbox_material_dim_inactive_windows = 1
+vim.g.gruvbox_material_statusline_style = 'original'
+vim.cmd [[colorscheme gruvbox-material]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -159,7 +168,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'onedark',
+    theme = 'gruvbox-material',
     component_separators = '|',
     section_separators = '',
   },
