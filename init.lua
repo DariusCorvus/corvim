@@ -97,13 +97,18 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- See `:help vim.o`
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
 
 -- Set relative line numbers
 vim.o.relativenumber = true
+
+-- Set cursor line visble
+vim.o.cursorline = true
+-- Set cursor column visible
+vim.o.cursorcolumn = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
