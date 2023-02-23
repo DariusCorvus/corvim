@@ -218,6 +218,7 @@ require('gitsigns').setup {
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
+  file_ignore_patterns = {"node_modules", "__pycache__"},
   defaults = {
     mappings = {
       i = {
