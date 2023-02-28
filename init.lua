@@ -162,11 +162,11 @@ vim.keymap.set('n', '<leader>qq', ":q!<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>qa', ":qa<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>qqa', ":qa!<CR>", { noremap = true, silent = true })
 
-vim.keymap.set('n', '<leader>v', ":vsplit<CR>",{ noremap = true, silent = true })
-vim.keymap.set('n', '<leader>h', ":split<CR>",{ noremap = true, silent = true })
+vim.keymap.set('n', '<leader>v', ":vsplit<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>h', ":split<CR>", { noremap = true, silent = true })
 
-vim.keymap.set('i', 'jk', [[<C-\><C-n>]],{ noremap = true, silent = true })
-vim.keymap.set('v', 'jk', [[<C-\><C-n>]],{ noremap = true, silent = true })
+vim.keymap.set('i', 'jk', [[<C-\><C-n>]], { noremap = true, silent = true })
+vim.keymap.set('v', 'jk', [[<C-\><C-n>]], { noremap = true, silent = true })
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -226,7 +226,7 @@ require('gitsigns').setup {
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
-  file_ignore_patterns = {"node_modules", "__pycache__"},
+  file_ignore_patterns = { "node_modules", "__pycache__" },
   defaults = {
     mappings = {
       i = {
@@ -443,7 +443,7 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs( -4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
@@ -462,8 +462,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      elseif luasnip.jumpable( -1) then
+        luasnip.jump( -1)
       else
         fallback()
       end
