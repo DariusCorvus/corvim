@@ -31,6 +31,11 @@ require('packer').startup(function(use)
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   }
 
+  use {
+    'ggandor/leap.nvim',
+    requires = { 'tpope/vim-repeat' },
+  }
+
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -181,6 +186,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- Enable leap.nvim
+require('leap').add_default_mappings()
 
 -- Set lualine as statusline
 -- See `:help lualine.txt`
