@@ -73,6 +73,14 @@ require("packer").startup(function(use)
 	-- Formatter & LSP
 	use({ "jose-elias-alvarez/null-ls.nvim" })
 
+	-- Autopairs
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
+
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
 	if has_plugins then
