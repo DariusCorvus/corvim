@@ -146,7 +146,7 @@ vim.g.gruvbox_material_background = "hard"
 vim.g.gruvbox_material_disable_italic_comment = 1
 vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_enable_bold = 1
-vim.g.gruvbox_material_ui_contrast = "high"
+vim.g.gruvbox_material_ui_contrast = "low"
 vim.g.gruvbox_material_dim_inactive_windows = 1
 vim.g.gruvbox_material_statusline_style = "original"
 vim.cmd([[colorscheme gruvbox-material]])
@@ -214,7 +214,7 @@ require("Comment").setup()
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
 require("indent_blankline").setup({
-	char = "┊",
+	char = "⁞",
 	show_trailing_blankline_indent = false,
 })
 
