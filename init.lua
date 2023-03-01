@@ -81,6 +81,9 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	-- Current Word
+	use({ "dominikduda/vim_current_word" })
+
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
 	if has_plugins then
@@ -157,6 +160,7 @@ vim.g.gruvbox_material_enable_bold = 1
 vim.g.gruvbox_material_ui_contrast = "low"
 vim.g.gruvbox_material_dim_inactive_windows = 1
 vim.g.gruvbox_material_statusline_style = "original"
+vim.g.gruvbox_material_current_word = "italic"
 vim.cmd([[colorscheme gruvbox-material]])
 
 -- Set completeopt to have a better completion experience
