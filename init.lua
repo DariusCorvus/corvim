@@ -84,6 +84,9 @@ require("packer").startup(function(use)
 	-- Current Word
 	use({ "dominikduda/vim_current_word" })
 
+	-- Debugging
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
 	if has_plugins then
@@ -549,6 +552,51 @@ null_ls.setup({
 	sources = null_ls_sources,
 	on_attach = null_ls_on_attach,
 })
+
+-- Debugger
+local function job(command)
+	local paths = {}
+	local job_id = vim.fn.jobstart(command, {
+		on_stdout = function(_, data, _)
+			table.insert(paths, vim.fn.join(data))
+		end,
+	})
+
+	vim.fn.jobwait({ job_id })
+	return paths[1]
+end
+
+local function get_python()
+	local tool = "which "
+	if vim.fn.has("nt") then
+		tool = "where.exe "
+		if os.getenv("VIRTUAL_ENV") then
+			return job(tool .. "/R . py*.exe")
+		end
+
+		return job(tool .. "py*.exe")
+	end
+
+	return job(tool .. "python")
+end
+
+local dap = require("dap")
+dap.adapters.python = {
+	type = "executable",
+	command = get_python(),
+	args = { "-m", "debugpy.adapter" },
+}
+dap.configurations.python = {
+	{
+		type = "python",
+		request = "launch",
+		name = "Launch file",
+		program = "${file}",
+		pythonPath = function()
+			return get_python()
+		end,
+	},
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
