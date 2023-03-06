@@ -176,19 +176,30 @@ vim.o.completeopt = "menuone,noselect"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>ww", ":w!<CR>", { noremap = true, silent = true })
+local keymap_opt = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qq", ":q!<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qa", ":qa<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>qqa", ":qa!<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>w", ":w<CR>", keymap_opt)
+vim.keymap.set("n", "<leader>ww", ":w!<CR>", keymap_opt)
 
-vim.keymap.set("n", "<leader>v", ":vsplit<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>h", ":split<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>q", ":q<CR>", keymap_opt)
+vim.keymap.set("n", "<leader>qq", ":q!<CR>", keymap_opt)
+vim.keymap.set("n", "<leader>qa", ":qa<CR>", keymap_opt)
+vim.keymap.set("n", "<leader>qqa", ":qa!<CR>", keymap_opt)
 
-vim.keymap.set("i", "jk", [[<C-\><C-n>]], { noremap = true, silent = true })
-vim.keymap.set("v", "jk", [[<C-\><C-n>]], { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>v", ":vsplit<CR>", keymap_opt)
+vim.keymap.set("n", "<leader>h", ":split<CR>", keymap_opt)
+
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", keymap_opt)
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", keymap_opt)
+
+vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi", keymap_opt)
+vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", keymap_opt)
+
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", keymap_opt)
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", keymap_opt)
+
+vim.keymap.set("i", "jk", [[<C-\><C-n>]], keymap_opt)
+vim.keymap.set("v", "jk", [[<C-\><C-n>]], keymap_opt)
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
