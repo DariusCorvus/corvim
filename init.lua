@@ -192,11 +192,19 @@ vim.keymap.set("n", "<leader>h", ":split<CR>", keymap_opt)
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", keymap_opt)
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", keymap_opt)
 
+vim.keymap.set("n", "<TAB>", ">>", keymap_opt)
+vim.keymap.set("n", "<S-TAB>", "<<", keymap_opt)
+
 vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi", keymap_opt)
 vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", keymap_opt)
 
+vim.keymap.set("i", "<S-TAB>", "<C-D>", keymap_opt)
+
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", keymap_opt)
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", keymap_opt)
+
+vim.keymap.set("v", "<TAB>", ">gv", keymap_opt)
+vim.keymap.set("v", "<S-TAB>", "<gv", keymap_opt)
 
 vim.keymap.set("i", "jk", [[<C-\><C-n>]], keymap_opt)
 vim.keymap.set("v", "jk", [[<C-\><C-n>]], keymap_opt)
