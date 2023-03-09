@@ -629,7 +629,7 @@ end
 
 local function get_python()
 	local cwd = vim.fn.getcwd()
-	if vim.fn.has("nt") then
+	if jit.os == "Windows" then
 		if vim.fn.executable(cwd .. "/venv/Scripts/python.exe") == 1 then
 			return cwd .. "/venv/Scripts/python.exe"
 		elseif vim.fn.executable(cwd .. "/.venv/Scripts/python.exe") == 1 then
@@ -648,7 +648,7 @@ local function get_python()
 end
 
 local function get_debugpy()
-	if vim.fn.has("nt") == 1 then
+	if jit.os == "Windows" then
 		return vim.fn.getenv("USERPROFILE") .. "/AppData/Local/nvim-data/mason/packages/debugpy/venv/Scripts/python.exe"
 	end
 	return vim.fn.getenv("HOME") .. "/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
