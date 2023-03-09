@@ -628,23 +628,38 @@ local function job(command)
 end
 
 local function get_python()
-	local tool = "which "
+	local cwd = vim.fn.getcwd()
 	if vim.fn.has("nt") then
-		tool = "where.exe "
-		if os.getenv("VIRTUAL_ENV") then
-			return job(tool .. "/R . py*.exe")
+		if vim.fn.executable(cwd .. "/venv/Scripts/python.exe") == 1 then
+			return cwd .. "/venv/Scripts/python.exe"
+		elseif vim.fn.executable(cwd .. "/.venv/Scripts/python.exe") == 1 then
+			return cwd .. "/.venv/Scripts/python.exe"
+		else
+			return job("which.exe python.exe")
 		end
-
-		return job(tool .. "py*.exe")
 	end
+	if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+		return cwd .. "/venv/bin/python"
+	elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+		return cwd .. "/.venv/bin/python"
+	else
+		return "/usr/bin/python"
+	end
+end
 
-	return job(tool .. "python")
+local function get_debugpy()
+	if vim.fn.has("nt") == 1 then
+		return vim.fn.getenv("USERPROFILE") .. "/AppData/Local/nvim-data/mason/packages/debugpy/venv/Scripts/python.exe"
+	end
+	return vim.fn.getenv("HOME") .. "/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
 end
 
 local dap = require("dap")
+dap.defaults.fallback.terminal_win_cmd = "tabnew"
+
 dap.adapters.python = {
 	type = "executable",
-	command = get_python(),
+	command = get_debugpy(),
 	args = { "-m", "debugpy.adapter" },
 }
 dap.configurations.python = {
@@ -653,9 +668,7 @@ dap.configurations.python = {
 		request = "launch",
 		name = "Launch file",
 		program = "${file}",
-		pythonPath = function()
-			return get_python()
-		end,
+		pythonPath = get_python(),
 	},
 }
 
