@@ -568,7 +568,14 @@ end
 local formatters = {}
 for _, value in ipairs(packages) do
 	if contains(value["spec"]["categories"], "Formatter") then
-		formatters[value["spec"]["name"]] = true
+		local name = value["spec"]["name"]
+		if name == "sql-formatter" then
+			name = "sql_formatter"
+		end
+		if name == "clang-format" then
+			name = "clang_format"
+		end
+		formatters[name] = true
 	end
 end
 
