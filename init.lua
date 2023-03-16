@@ -87,6 +87,23 @@ require("packer").startup(function(use)
 	-- Debugging
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 
+	-- Terminal
+	use({
+		"akinsho/toggleterm.nvim",
+		tag = "*",
+		config = function()
+			require("toggleterm").setup({
+				size = function(term)
+					if term.direction == "horizontal" then
+						return vim.fn.winheight(0) * 0.4
+					elseif term.direction == "vertical" then
+						return vim.o.columns * 0.4
+					end
+				end,
+			})
+		end,
+	})
+
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
 	if has_plugins then
@@ -118,6 +135,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	group = packer_group,
 	pattern = vim.fn.expand("$MYVIMRC"),
 })
+
+local M = {
+	terminals = {},
+}
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -152,6 +173,8 @@ vim.o.smartcase = true
 -- Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
+
+vim.o.tabstop = 2
 
 -- Set colorscheme
 vim.o.termguicolors = true
@@ -671,6 +694,61 @@ dap.configurations.python = {
 		pythonPath = get_python(),
 	},
 }
+
+-- Terminal
+function _G.set_terminal_keymaps()
+	local opts = { noremap = true }
+	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-W>h]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-W>j]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-W>k]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-W>l]], opts)
+end
+
+vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
+local base_terminal = require("toggleterm.terminal").Terminal
+local terminal = base_terminal:new({ hidden = true })
+
+function _G.toggle_terminal(name, direction)
+	if direction == nil then
+		direction = "float"
+	end
+	if name == nil then
+		terminal.direction = direction
+		terminal:toggle()
+		return
+	end
+
+	M.terminals[name].direction = direction
+	M.terminals[name]:toggle()
+end
+
+function M.add_terminal(name, cmd, direction)
+	if name == nil then
+		return
+	end
+
+	if direction == nil then
+		direction = "float"
+	end
+
+	if cmd == nil then
+		M.terminals[name] = base_terminal:new({ direction = direction })
+		return
+	end
+	M.terminals[name] = base_terminal:new({ cmd = cmd, direction = direction })
+end
+
+-- Terminal keymaps
+M.add_terminal("shell")
+M.add_terminal("lazygit", "lazygit")
+
+vim.keymap.set("n", "<leader>tf", "<cmd>lua toggle_terminal('shell')<CR>", keymap_opt)
+vim.keymap.set("n", "<leader>tt", "<cmd>lua toggle_terminal('shell', 'tab')<CR>", keymap_opt)
+vim.keymap.set("n", "<leader>tg", "<cmd>lua toggle_terminal('lazygit')<CR>", keymap_opt)
+vim.keymap.set("n", "<leader>tgt", "<cmd>lua toggle_terminal('lazygit', 'tab')<CR>", keymap_opt)
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
