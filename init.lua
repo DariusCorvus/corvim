@@ -192,6 +192,9 @@ vim.cmd([[colorscheme gruvbox-material]])
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
+-- Clipboard
+vim.o.clipboard = 'unnamed,unnamedplus'
+
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
 -- See `:help mapleader`
