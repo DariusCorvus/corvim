@@ -193,7 +193,7 @@ vim.cmd([[colorscheme gruvbox-material]])
 vim.o.completeopt = "menuone,noselect"
 
 -- Clipboard
-vim.o.clipboard = 'unnamed,unnamedplus'
+vim.o.clipboard = "unnamed,unnamedplus"
 
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
@@ -744,14 +744,26 @@ function M.add_terminal(name, cmd, direction)
 	M.terminals[name] = base_terminal:new({ cmd = cmd, direction = direction })
 end
 
--- Terminal keymaps
-M.add_terminal("shell")
-M.add_terminal("lazygit", "lazygit")
+-- Terminal
+local function detect_shell()
+	if jit.os == "Windows" then
+		if vim.fn.executable("pwsh") then
+			return "pwsh -nol"
+		end
+	end
+	return vim.o.shell
+end
 
+M.add_terminal("shell", detect_shell())
 vim.keymap.set("n", "<leader>tf", "<cmd>lua toggle_terminal('shell')<CR>", keymap_opt)
 vim.keymap.set("n", "<leader>tt", "<cmd>lua toggle_terminal('shell', 'tab')<CR>", keymap_opt)
-vim.keymap.set("n", "<leader>tg", "<cmd>lua toggle_terminal('lazygit')<CR>", keymap_opt)
-vim.keymap.set("n", "<leader>tgt", "<cmd>lua toggle_terminal('lazygit', 'tab')<CR>", keymap_opt)
+
+if vim.fn.executable("lazygit") then
+	M.add_terminal("lazygit", "lazygit")
+
+	vim.keymap.set("n", "<leader>tg", "<cmd>lua toggle_terminal('lazygit')<CR>", keymap_opt)
+	vim.keymap.set("n", "<leader>tgt", "<cmd>lua toggle_terminal('lazygit', 'tab')<CR>", keymap_opt)
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
