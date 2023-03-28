@@ -179,6 +179,7 @@ vim.o.tabstop = 2
 vim.o.cmdheight = 0
 
 vim.o.scrolloff = 8
+vim.o.sidescrolloff = 8
 
 -- Set colorscheme
 vim.o.termguicolors = true
