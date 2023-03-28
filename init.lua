@@ -176,6 +176,10 @@ vim.wo.signcolumn = "yes"
 
 vim.o.tabstop = 2
 
+vim.o.cmdheight = 0
+
+vim.o.scrolloff = 8
+
 -- Set colorscheme
 vim.o.termguicolors = true
 vim.g.gruvbox_material_foreground = "original"
