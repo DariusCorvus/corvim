@@ -104,6 +104,16 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	-- Sessions
+	use({
+		"folke/persistence.nvim",
+		event = "BufReadPre",
+		module = "persistence",
+		config = function()
+			require("persistence").setup()
+		end,
+	})
+
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
 	if has_plugins then
@@ -275,6 +285,16 @@ vim.keymap.set("n", "<leader><F5>", function()
 	require("dapui").toggle()
 end)
 
+-- persistence keymaps
+vim.keymap.set("n", "<leader>qs", function()
+	require("persistence").load()
+end)
+vim.keymap.set("n", "<leader>ql", function()
+	require("persistence").load({ last = true })
+end)
+vim.keymap.set("n", "<leader>qd", function()
+	require("persistence").stop()
+end)
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
