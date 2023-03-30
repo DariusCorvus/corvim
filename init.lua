@@ -782,6 +782,8 @@ end
 M.add_terminal("shell", detect_shell())
 vim.keymap.set("n", "<leader>tf", "<cmd>lua toggle_terminal('shell')<CR>", keymap_opt)
 vim.keymap.set("n", "<leader>tt", "<cmd>lua toggle_terminal('shell', 'tab')<CR>", keymap_opt)
+vim.keymap.set("n", "<leader>tv", "<cmd>lua toggle_terminal('shell', 'vertical')<CR>", keymap_opt)
+vim.keymap.set("n", "<leader>th", "<cmd>lua toggle_terminal('shell', 'horizontal')<CR>", keymap_opt)
 
 if vim.fn.executable("lazygit") then
 	M.add_terminal("lazygit", "lazygit")
