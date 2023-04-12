@@ -154,6 +154,7 @@ local M = {
 -- See `:help vim.o`
 vim.o.title = true
 vim.o.titlestring = "%F "
+vim.o.titlestring = "%F "
 
 -- Set highlight on search
 vim.o.hlsearch = true
