@@ -36,6 +36,9 @@ require("packer").startup(function(use)
 	use({
 		"ggandor/leap.nvim",
 		requires = { "tpope/vim-repeat" },
+		run = function()
+			require("leap").opts.safe_labels = {}
+		end,
 	})
 
 	use({
