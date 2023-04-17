@@ -156,7 +156,6 @@ local M = {
 -- [[ Setting options ]]
 -- See `:help vim.o`
 vim.o.title = true
-vim.o.titlestring = "%F "
 vim.o.titlestring = "%F "
 
 -- Set highlight on search
@@ -191,6 +190,7 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
 
 vim.o.tabstop = 2
+vim.o.shiftwidth = 2
 
 vim.o.cmdheight = 0
 
