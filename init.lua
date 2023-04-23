@@ -381,9 +381,9 @@ augroup END
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.surrealdb = {
 	install_info = {
-		url = "~/repos/js/tree-sitter-surrealdb",
+		url = "https://github.com/DariusCorvus/tree-sitter-surrealdb.git",
 		files = { "src/parser.c" },
-		branch = "highlights",
+		branch = "main",
 	},
 	filetype = "surql",
 }
