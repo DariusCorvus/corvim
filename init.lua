@@ -51,6 +51,10 @@ require("packer").startup(function(use)
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		after = "nvim-treesitter",
 	})
+	use({
+		"dariuscorvus/tree-sitter-surrealdb.nvim",
+		requires = { "nvim-treesitter" },
+	})
 
 	-- Git related plugins
 	use("tpope/vim-fugitive")
@@ -372,22 +376,7 @@ vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { de
 
 -- [[ Configure Treesitter ]]
 ---- Treesitter SURQL
-vim.api.nvim_command([[
-augroup SurqlFiletype
-  autocmd BufRead,BufNewFile *.surql :set filetype=surql
-augroup END
-]])
-
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.surrealdb = {
-	install_info = {
-		url = "https://github.com/DariusCorvus/tree-sitter-surrealdb.git",
-		files = { "src/parser.c" },
-		branch = "main",
-	},
-	filetype = "surql",
-}
-
+require("tree-sitter-surrealdb").setup()
 -- See `:help nvim-treesitter`
 require("nvim-treesitter.configs").setup({
 	-- Add languages to be installed here that you want installed for treesitter
