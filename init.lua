@@ -54,6 +54,10 @@ require("packer").startup(function(use)
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		after = "nvim-treesitter",
 	})
+	use({
+		"dariuscorvus/tree-sitter-surrealdb.nvim",
+		requires = { "nvim-treesitter" },
+	})
 
 	-- Git related plugins
 	use("tpope/vim-fugitive")
@@ -402,6 +406,8 @@ vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc
 vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
 -- [[ Configure Treesitter ]]
+---- Treesitter SURQL
+require("tree-sitter-surrealdb").setup()
 -- See `:help nvim-treesitter`
 require("nvim-treesitter.configs").setup({
 	-- Add languages to be installed here that you want installed for treesitter
