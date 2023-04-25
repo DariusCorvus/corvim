@@ -59,6 +59,11 @@ require("packer").startup(function(use)
 		requires = { "nvim-treesitter" },
 	})
 
+	use({
+		"dariuscorvus/tree-sitter-language-injection.nvim",
+		requires = { "nvim-treesitter" },
+	})
+
 	-- Git related plugins
 	use("tpope/vim-fugitive")
 	use("tpope/vim-rhubarb")
@@ -408,6 +413,10 @@ vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { de
 -- [[ Configure Treesitter ]]
 ---- Treesitter SURQL
 require("tree-sitter-surrealdb").setup()
+
+---- Treesitter language injections
+require("tree-sitter-language-injection").setup()
+
 -- See `:help nvim-treesitter`
 require("nvim-treesitter.configs").setup({
 	-- Add languages to be installed here that you want installed for treesitter
