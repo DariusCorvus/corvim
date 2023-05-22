@@ -9,6 +9,13 @@ vim.opt.relativenumber = true
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
 
+-- Enable cursorline and cursorcolumn
+vim.o.cursorline = true
+vim.o.cursorcolumn = true
+vim.o.cursorlineopt = 'both'
+
+vim.o.guicursor = 'i-ci:hor1-iCursor,a:blinkon1'
+
 -- Set keymap 'jk' for 'esc' in 'i' and 'v'
 vim.keymap.set({ 'i', 'v' }, 'jk', [[<C-\><C-n>]], { silent = true })
 
@@ -26,6 +33,7 @@ vim.g.gruvbox_material_dim_inactive_windows = 1
 vim.g.gruvbox_material_statusline_style = "original"
 vim.g.gruvbox_material_current_word = "italic"
 vim.cmd([[colorscheme gruvbox-material]])
+vim.cmd([[highlight normal guibg=Black]])
 
 require("lualine").setup({
   options = {
