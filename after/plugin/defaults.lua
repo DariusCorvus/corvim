@@ -38,7 +38,7 @@ vim.cmd([[highlight normal guibg=Black]])
 require("lualine").setup({
   options = {
     icons_enabled = true,
-    theme = "gruvbox-material",
+    -- theme = "gruvbox-material",
     component_separators = "|",
     section_separators = "",
   },
