@@ -33,7 +33,9 @@ vim.g.gruvbox_material_dim_inactive_windows = 1
 vim.g.gruvbox_material_statusline_style = "original"
 vim.g.gruvbox_material_current_word = "italic"
 vim.cmd([[colorscheme gruvbox-material]])
-vim.cmd([[highlight normal guibg=Black]])
+vim.cmd([[highlight normal guibg=NONE]])
+vim.cmd([[highlight cursorline guibg=Black]])
+vim.cmd([[highlight cursorcolumn guibg=Black]])
 
 require("lualine").setup({
   options = {
