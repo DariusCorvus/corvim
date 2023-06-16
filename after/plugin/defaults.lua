@@ -47,3 +47,9 @@ require("lualine").setup({
     section_separators = "",
   },
 })
+
+-- HARPOON
+vim.keymap.set({ "n" }, "<leader>sb", ":Telescope harpoon marks<CR>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>b", ":lua require('harpoon.mark').add_file()<CR>", { silent = true })
+--- TELESCOPE
+require("telescope").load_extension('harpoon')
