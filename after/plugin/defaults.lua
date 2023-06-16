@@ -36,6 +36,8 @@ vim.cmd([[colorscheme gruvbox-material]])
 vim.cmd([[highlight normal guibg=NONE]])
 vim.cmd([[highlight cursorline guibg=Black]])
 vim.cmd([[highlight cursorcolumn guibg=Black]])
+vim.cmd([[highlight cursorlinenr guibg=Black]])
+vim.cmd([[highlight cursorlinesign guibg=Black]])
 
 require("lualine").setup({
   options = {
