@@ -124,6 +124,10 @@ local function configure(_)
   vim.keymap.set({ "n" }, "<leader>b", ":lua require('harpoon.mark').add_file()<CR>", { silent = true })
   --- TELESCOPE
   require("telescope").load_extension('harpoon')
+
+
+  -- TREESITTER LANGUAGE INJECTION
+  require("tree-sitter-language-injection").setup()
 end
 
 local configuration_group = vim.api.nvim_create_augroup("Configuration", { clear = true })
