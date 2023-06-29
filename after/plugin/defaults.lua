@@ -128,9 +128,23 @@ local function configure(_)
 
   -- TREESITTER LANGUAGE INJECTION
   require("tree-sitter-language-injection").setup()
+
+  local indent_group = vim.api.nvim_create_augroup("Identation", { clear = true })
+  vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
+    callback = function()
+      vim.cmd([[set softtabstop=2 shiftwidth=2 tabstop=2 expandtab]])
+
+      vim.cmd([[setlocal softtabstop=2 shiftwidth=2 tabstop=2 expandtab]])
+    end,
+    group = indent_group,
+    pattern = "*"
+  })
 end
 
 local configuration_group = vim.api.nvim_create_augroup("Configuration", { clear = true })
 vim.api.nvim_create_autocmd("VimEnter", {
-  callback = configure, group = configuration_group
+  callback = configure,
+  group = configuration_group
 })
+
+vim.cmd([[set softtabstop=2 shiftwidth=2 tabstop=2 expandtab]])
