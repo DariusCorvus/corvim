@@ -62,8 +62,8 @@ local function configure(_)
   vim.keymap.set({ 'v', "x" }, 'P', 'p', { silent = true })
 
   -- Set keymaps for 'vsplit' and 'split'
-  vim.keymap.set({ "n" }, "<leader>v", ":vsplit<CR>", { silent = true })
-  vim.keymap.set({ "n" }, "<leader>h", ":split<CR>", { silent = true })
+  vim.keymap.set({ "n" }, "<leader>v", ":vsplit<CR>", { desc = '[V]ertical Split', silent = true })
+  vim.keymap.set({ "n" }, "<leader>h", ":split<CR>", { desc = '[H]orizontal Split', silent = true })
 
   vim.g.gruvbox_material_foreground = "original"
   vim.g.gruvbox_material_background = "hard"
