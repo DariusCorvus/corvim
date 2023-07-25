@@ -82,6 +82,7 @@ local function configure(_)
   vim.cmd([[highlight cursorcolumn guibg=Black]])
   vim.cmd([[highlight cursorlinenr guibg=Black]])
   vim.cmd([[highlight cursorlinesign guibg=Black]])
+  vim.cmd([[highlight Visual guibg=gray]])
 
   require("lualine").setup({
     options = {
